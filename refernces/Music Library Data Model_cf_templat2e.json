@@ -1,0 +1,58 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "Songs": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "KeySchema": [
+          {
+            "AttributeName": "Id",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "Metadata",
+            "KeyType": "RANGE"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "Id",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "Metadata",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "DownloadMonth",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "TotalDownloadsInMonth",
+            "AttributeType": "S"
+          }
+        ],
+        "GlobalSecondaryIndexes": [
+          {
+            "IndexName": "DownloadsByMonth",
+            "KeySchema": [
+              {
+                "AttributeName": "DownloadMonth",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "TotalDownloadsInMonth",
+                "KeyType": "RANGE"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "ALL"
+            }
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "TableName": "Songs"
+      }
+    }
+  }
+}

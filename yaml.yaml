@@ -1,0 +1,19 @@
+table :
+  name: test
+  meta :
+  billingMode: onDemand
+  pointInTimeRecovery: false
+  deleteProtection: true
+  tags:
+    - "tag"
+    - 1.1
+    nested :
+      - "value"
+  key :
+    partitionKey :
+      type: string
+      name: "1"
+    sortKey:
+      type: number
+      name: "2"
+

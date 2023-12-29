@@ -1,0 +1,23 @@
+<table>
+    <name>test</name>
+    <meta>
+        <billingMode>onDemand</billingMode>
+        <pointlnTimeRecovery>false</pointlnTimeRecovery>
+        <deleteProtection>true</deleteProtection>
+        <tags>tag</tags>
+        <tags>-1.1</tags>
+        <tags>
+            <nested>object</nested>
+        </tags>
+    </meta>
+    <key>
+        <partitionKey>
+            <type>string</type>
+            <name>1</name>
+        </partitionKey>
+        <sortKey>
+            <type>number</type>
+            <name>2</name>
+        </sortKey>
+    </key>
+</table>
