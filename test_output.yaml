@@ -1,0 +1,57 @@
+Type: AWS::DynamoDB::Table
+Properties:
+  TableName: test-table
+  KeySchema:
+    - AttributeName: artist
+      KeyType: HASH
+    - AttributeName: age
+      KeyType: RANGE
+  AttributeDefinitions:
+    - AttributeName: artist
+      AttributeType: S
+    - AttributeName: age
+      AttributeType: "N"
+  GlobalSecondaryIndexes:
+    - IndexName: gsi-1
+      Projection:
+        projectionType: ALL
+      ProvisionedThroughput:
+        readCapacityUnits: 100
+        writeCapacityUnits: 5.5
+      KeySchema:
+        - AttributeName: address
+          KeyType: S
+        - AttributeName: alive
+          KeyType: RANGE
+    - IndexName: gsi-2
+      Projection:
+        projectionType: ALL
+      KeySchema:
+        - AttributeName: genre
+          KeyType: S
+  BillingMode: PAY_PER_REQUEST
+  LocalSecondaryIndexes:
+    - IndexName: lsi1
+      Projection:
+        projectionType: KEYS_ONLY
+      KeySchema:
+        - AttributeName: artist
+          KeyType: HASH
+        - AttributeName: gender
+          KeyType: B
+    - IndexName: lsi2
+      Projection:
+        type: INCLUDE
+        nonKeyAttributes:
+          - hair-colour
+          - children
+      KeySchema:
+        - AttributeName: artist
+          KeyType: HASH
+        - AttributeName: language
+          KeyType: S
+  Tags:
+    - Key: tag1
+      Value: tag-val-1
+    - Key: tag2
+      Value: tag-val-2
